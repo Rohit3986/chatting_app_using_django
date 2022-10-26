@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="background-color: rgb(126, 126, 143);width: 20%;margin-left: 50%;border-style: double;padding: 2%;">
+        <form action="/home/login/" method="POST" novalidate>
+            {% csrf_token %}{% for field in res %}
+            <p>{{field.label_tag}} {{field}}<br> <span style="color: red;">{% for error in field.errors %}
+                {{error}}<br>
+            {% endfor %}</span>
+            </p> {% endfor %} {% if res.non_field_errors %}<span style="color: red;">{% for error in res.non_field_errors %}
+                {{error}}
+            {% endfor %}</span>{% endif %} <input type="submit" value="submit">
+        </form>
+        <a href="/home/login/">login</a> {% if messages %}{% for message in messages %}{{message}}{% endfor %}{% endif %}
+    </div>
+</body>
+
+</html>
